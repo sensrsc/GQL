@@ -1,12 +1,14 @@
 language: php
 
+branches:
+  only:
+  - develop
+  - master
+
 php:
   - 7.3
 
 sudo: false
-
-env:
-  - APP_DEBUG=false
 
 install:
   - composer install --quiet
