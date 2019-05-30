@@ -1,15 +1,5 @@
----
-engines:
-  duplication:
-    enabled: true
-    checks:
-      Similar code:
-        enabled: false
-    config:
-      languages:
-      - php
-  fixme:
-    enabled: true
+version: "2"
+plugins:
   phpmd:
     enabled: true
     config:
@@ -19,16 +9,20 @@ engines:
   phpcodesniffer:
     enabled: true
     config:
-      file_extensions: "php,inc,lib"
+      file_extensions:
+        - php
       standard: "PSR1,PSR2"
       ignore_warnings: true
-ratings:
-  paths:
-  - "**.inc"
-  - "**.lib"
-  - "**.php"
+  duplication:
+    enabled: true
+    checks:
+      Similar code:
+        enabled: false
 exclude_paths:
-- tests/
-- vendor/
-- database/
-- bootstrap/
+  - "node_modules/"
+  - "vendor/"
+  - "bootstrap/"
+  - "database/"
+  - "public/"
+  - "storages/"
+  - "tests/"

@@ -1,9 +1,9 @@
 <template>
-  <router-view />
+  <aside class="main-sidebar" />
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'AppSidebar'
 };
 </script>
