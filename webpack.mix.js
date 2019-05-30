@@ -10,6 +10,8 @@ mix.webpackConfig({
   }
 });
 
+// mix.copyDirectory('resources/img', 'public/img');
+
 mix.js('resources/js/admin.js', 'public/js')
   .sass('resources/sass/admin.scss', 'public/css')
   .sourceMaps();
