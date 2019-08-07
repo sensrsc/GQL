@@ -28,7 +28,7 @@ class UsersQuery extends Query
         ];
     }
 
-    public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
+    public function resolve($args)
     {
         if (isset($args['userId'])) {
             return User::where('user_id' , $args['userId'])->get();
