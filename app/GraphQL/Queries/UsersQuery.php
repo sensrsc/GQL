@@ -1,24 +1,26 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Queries;
 
+use Closure;
 use App\Models\User;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 
-class UserQuery extends Query
+class UsersQuery extends Query
 {
     protected $attributes = [
-        'name' => 'User Query'
+        'name' => 'Users query'
     ];
 
-    public function type()
+    public function type(): Type
     {
         return Type::listOf(GraphQL::type('user'));
     }
 
-    public function args()
+    public function args(): array
     {
         return [
             'userId' => ['name' => 'userId', 'type' => Type::string()],
@@ -26,10 +28,10 @@ class UserQuery extends Query
         ];
     }
 
-    public function resolve($args)
+    public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         if (isset($args['userId'])) {
-            return User::where('user_id', $args['userId'])->get();
+            return User::where('user_id' , $args['userId'])->get();
         }
         if (isset($args['email'])) {
             return User::where('email', $args['email'])->get();
