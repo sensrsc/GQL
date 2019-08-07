@@ -96,7 +96,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => App\GraphQL\Queries\UsersQuery::class,
+                'user' => App\GraphQL\Queries\UserQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -134,7 +134,7 @@ return [
     //     'message' => '',
     //     'locations' => []
     // ]
-    'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
+    'error_formatter' => ['App\Exceptions\GraphQLException', 'formatError'],
 
     /*
      * Custom Error Handling
