@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Type;
+namespace App\GraphQL\Types;
 
 use App\Models\User;
 use GraphQL\Type\Definition\Type;
@@ -14,12 +14,13 @@ class UserType extends GraphQLType
         'model' => User::class,
     ];
 
-    public function fields()
+    public function fields(): array
     {
         return [
             'userId' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of the user',
+                'alias' => 'user_id',
             ],
             'email' => [
                 'type' => Type::string(),
@@ -28,13 +29,8 @@ class UserType extends GraphQLType
         ];
     }
 
-    protected function resolveEmailField($root)
+    protected function resolveEmailField($root, $args)
     {
         return strtolower($root->email);
-    }
-
-    protected function resolveUserIdField($root)
-    {
-        return $root->user_id;
     }
 }

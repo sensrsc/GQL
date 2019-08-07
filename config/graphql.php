@@ -1,10 +1,6 @@
 <?php
 
-
-use example\Type\EType;
-use example\Query\ExampleQuery;
-use example\Mutation\ExampleMutation;
-use example\Type\ExampleRelationType;
+declare(strict_types=1);
 
 return [
 
@@ -100,7 +96,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'user' => 'App\GraphQL\Query\UserQuery',
+                'users' => App\GraphQL\Queries\UsersQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -120,8 +116,16 @@ return [
     // ]
     //
     'types' => [
-        'user' => App\GraphQL\Type\UserType::class,
+        'user' => App\GraphQL\Types\UserType::class
+        // 'example'           => ExampleType::class,
+        // 'relation_example'  => ExampleRelationType::class,
+        // \Rebing\GraphQL\Support\UploadType::class,
     ],
+
+    // The types will be loaded on demand. Default is to load all types on each request
+    // Can increase performance on schemes with many types
+    // Presupposes the config type key to match the type class name property
+    'lazyload_types' => false,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.
@@ -165,7 +169,7 @@ return [
      * Config for GraphiQL (see (https://github.com/graphql/graphiql).
      */
     'graphiql' => [
-        'prefix'     => '/graphiql/{graphql_schema?}',
+        'prefix'     => '/graphiql',
         'controller' => \Rebing\GraphQL\GraphQLController::class.'@graphiql',
         'middleware' => [],
         'view'       => 'graphql::graphiql',
@@ -188,4 +192,15 @@ return [
      * ```
      */
     'defaultFieldResolver' => null,
+
+    /*
+     * Any headers that will be added to the response returned by the default controller
+     */
+    'headers' => [],
+
+    /*
+     * Any JSON encoding options when returning a response from the default controller
+     * See http://php.net/manual/function.json-encode.php for the full list of options
+     */
+    'json_encoding_options' => 0,
 ];
