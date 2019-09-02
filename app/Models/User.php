@@ -8,5 +8,11 @@ class User extends Model
 {
     protected $primaryKey = 'user_id';
     protected $guarded = ['created_at', 'updated_at'];
+    protected $hidden = ['password'];
     public $incrementing = false;
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = hash('sha256', $password);
+    }
 }

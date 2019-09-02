@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import Main from '@/components/Main';
 import ProductList from '@/components/ProductList';
+import Login from '@/components/Login';
 
 const router = new VueRouter({
   mode: 'history',
@@ -23,6 +24,11 @@ const router = new VueRouter({
           meta: { guarded: true }
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '*',
