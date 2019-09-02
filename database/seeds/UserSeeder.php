@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         User::create([
             'user_id' => 'f6a08da0-fff2-4257-a62e-bd5cbe6f173d',
             'email' => 'admin@gql.com',
-            'password' => hash('sha256', '123456'),
+            'password' => '123456',
             'name' => 'admin',
             'role_id' => 1,
             'created_by' => 'f6a08da0-fff2-4257-a62e-bd5cbe6f173d',
