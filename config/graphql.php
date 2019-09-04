@@ -96,7 +96,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'user' => App\GraphQL\Queries\UserQuery::class,
+                'auth' => App\GraphQL\Queries\AuthQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,

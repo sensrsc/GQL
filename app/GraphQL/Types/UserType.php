@@ -9,8 +9,8 @@ use Rebing\GraphQL\Support\Type as GraphQLType;
 class UserType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'User',
-        'description' => 'A user',
+        'name' => 'user',
+        'description' => 'user type',
         'model' => User::class,
     ];
 
@@ -19,20 +19,25 @@ class UserType extends GraphQLType
         return [
             'userId' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The id of the user',
+                'description' => 'the id of the user',
                 'alias' => 'user_id',
             ],
             'email' => [
                 'type' => Type::string(),
-                'description' => 'The email of user',
+                'description' => 'the email of user',
             ],
             'name' => [
                 'type' => Type::string(),
-                'description' => 'The name of user',
+                'description' => 'the name of user',
             ],
             'mobile' => [
                 'type' => Type::string(),
-                'description' => 'The mobile number of user',
+                'description' => 'the mobile number of user',
+            ],
+            'token' => [
+                'type' => Type::string(),
+                'description' => 'authorized token',
+                'selectable' => false,
             ]
         ];
     }
