@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $primaryKey = 'user_id';
-    protected $guarded = ['created_at', 'updated_at'];
+    protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
     protected $hidden = ['password'];
     public $incrementing = false;
 

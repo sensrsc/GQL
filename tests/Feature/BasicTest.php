@@ -6,9 +6,11 @@ use Tests\TestCase;
 
 class BasicTest extends TestCase
 {
-    public function testGraphQLAliveTest()
+    use TestTrait;
+
+    public function testGraphQLAlive()
     {
-        $response = $this->get('/graphql');
+        $response = $this->graphql([]);
         $response->assertStatus(200)->assertExactJson([]);
     }
 }
