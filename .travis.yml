@@ -8,16 +8,28 @@ branches:
 php:
   - 7.3
 
+services:
+  - postgresql
+  - redis-server
+
+addons:
+  postgresql: "11.5"
+
 sudo: false
 
 env:
   global:
     - CC_TEST_REPORTER_ID=58f8d0c3b985933b765e83a0f7df544089bf53d2ef853151c076eaaa2005fc88
 
+before_install:
+  - psql -c 'create database demo;' -U postgres
+  - cp .env.travis .env
+
 install:
   - composer install --quiet
 
 before_script:
+  - php artisan migrate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
