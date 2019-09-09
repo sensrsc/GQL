@@ -12,9 +12,6 @@ services:
   - postgresql
   - redis-server
 
-addons:
-  postgresql: "11.5"
-
 sudo: false
 
 env:
