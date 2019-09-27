@@ -1,14 +1,1 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Demo</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
-  </head>
-  <body class="skin-blue sidebar-mini">
-    <div id="app"></div>
-    <script src="{{ mix('js/admin.js') }}"></script>
-  </body>
-</html>
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/favicon.ico><title>GQL</title><link href=/static/js/app.e9375865.js rel=preload as=script><link href=/static/js/chunk-vendors.859b3980.js rel=preload as=script></head><body><noscript><strong>We're sorry but Katalyst doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/static/js/chunk-vendors.859b3980.js></script><script src=/static/js/app.e9375865.js></script></body></html>
