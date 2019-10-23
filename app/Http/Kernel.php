@@ -14,7 +14,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        //
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -42,6 +42,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 
     /**

@@ -1,17 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { routers } from '@/config/router.config';
-
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+import user from '@/store/modules/user';
+
+export default new Vuex.Store({
   state: {
-    menu: [...routers]
   },
   getters: {
-    menu: state => state.menu
   },
-  modules: {}
+  mutations: {
+  },
+  modules: {
+    user
+  }
 });
-
-export default store;
