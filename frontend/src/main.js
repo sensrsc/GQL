@@ -1,16 +1,19 @@
 import Vue from 'vue';
-import App from '@/App.vue';
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
-import { sync } from 'vuex-router-sync';
+import App from '@/App';
+
+import 'normalize.css/normalize.css'; // a modern alternative to CSS resets
+
+import Element from 'element-ui';
+import '@/styles/element-variables.scss';
+import '@/styles/index.scss'; // global css
+
+Vue.use(Element, { size: 'medium' });
 
 import router from '@/router';
 import store from '@/store';
+import '@/icons'; // icon
 
-Vue.use(Antd);
 Vue.config.productionTip = false;
-
-sync(store, router);
 
 new Vue({
   router,

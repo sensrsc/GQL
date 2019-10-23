@@ -1,18 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { routers } from '@/config/router.config';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',
+  base: '',
   routes: [
     {
-      name: 'index',
-      path: '/',
-      redirect: '/dashboard',
-      children: routers,
-      component: () => import('@/components/layout')
+      name: 'login',
+      path: '/login',
+      meta: {
+        title: 'Login'
+      },
+      component: () => import('@/views/user/Login')
     }
   ]
 });
