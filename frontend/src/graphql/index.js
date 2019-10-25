@@ -1,5 +1,3 @@
-import { loginQuery } from '@/graphql/query/user';
+import { loginRequest } from '@/graphql/user';
 
-export {
-  loginQuery
-};
+export { loginRequest };
