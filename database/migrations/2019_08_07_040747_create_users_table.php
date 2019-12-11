@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
                 $table->string('name', 64);
                 $table->tinyInteger('role_id');
                 $table->string('mobile', 64)->nullable();
+                $table->string('avatar', 128)->nullable();
                 $table->string('created_by', 36);
                 $table->string('updated_by', 36);
                 $table->timestamps();
