@@ -34,6 +34,10 @@ class UserType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'the mobile number of user',
             ],
+            'avatar' => [
+                'type' => Type::string(),
+                'description' => 'the avatar link of user',
+            ],
             'token' => [
                 'type' => Type::string(),
                 'description' => 'authorized token',

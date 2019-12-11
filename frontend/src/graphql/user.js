@@ -9,6 +9,7 @@ export const loginRequest = parameter => {
         email
         name
         mobile
+        avatar
         token
       }
     }`,
