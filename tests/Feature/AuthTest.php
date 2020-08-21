@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AuthTest extends TestCase
 {
-    use TestTrait, RefreshDatabase;
+    use AuthTrait, RefreshDatabase;
 
     private $email;
     private $password;
@@ -24,22 +24,9 @@ class AuthTest extends TestCase
         $this->user = factory(User::class)->create(['email' => $this->email, 'password' => $this->password]);
     }
 
-    private function authSuccessQuery()
-    {
-        return "{
-            auth (email: \"$this->email\", password: \"$this->password\") {
-                userId
-                email
-                name
-                mobile
-                token
-            }
-        }";
-    }
-
     public function testAuthSuccess()
     {
-        $response = $this->graphql(['query' => $this->authSuccessQuery()]);
+        $response = $this->request(['query' => $this->authSuccessQuery($this->email, $this->password)]);
         $response->assertStatus(200)->assertJsonStructure([
             'data' => [
                 'auth' => [
@@ -58,22 +45,9 @@ class AuthTest extends TestCase
         ]);
     }
 
-    private function authFailQuery()
-    {
-        return "{
-            auth (email: \"$this->email\", password: \"$this->incorrectPassword\") {
-                userId
-                email
-                name
-                mobile
-                token
-            }
-        }";
-    }
-
     public function testAuthFail()
     {
-        $response = $this->graphql(['query' => $this->authFailQuery()]);
+        $response = $this->request(['query' => $this->authFailQuery($this->email, $this->incorrectPassword)]);
         $response->assertStatus(200)->assertExactJson([
             'data' => [
                 'auth' => null
