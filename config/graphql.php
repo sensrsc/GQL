@@ -99,6 +99,17 @@ return [
         'default' => [
             'query' => [
                 'auth' => App\GraphQL\Queries\AuthQuery::class,
+                // 'product' => \App\GraphQL\Queries\ProductQuery::class,
+            ],
+            'mutation' => [
+                // 'example_mutation'  => ExampleMutation::class,
+            ],
+            'middleware' => [],
+            'method'     => ['get', 'post'],
+        ],
+        'products' => [
+            'query' => [
+                'products' => App\GraphQL\Queries\ProductQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -118,7 +129,8 @@ return [
     // ]
     //
     'types' => [
-        'user' => App\GraphQL\Types\UserType::class
+        'user' => App\GraphQL\Types\UserType::class,
+        'product' => App\GraphQL\Types\ProductType::class,
         // 'example'           => ExampleType::class,
         // 'relation_example'  => ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
@@ -127,7 +139,8 @@ return [
     // The types will be loaded on demand. Default is to load all types on each request
     // Can increase performance on schemes with many types
     // Presupposes the config type key to match the type class name property
-    'lazyload_types' => false,
+    // 'lazyload_types' => false,
+    'lazyload_types' => true,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.

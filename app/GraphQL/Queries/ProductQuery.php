@@ -8,30 +8,29 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 
-use App\Services\UserService;
+use App\Services\ProductService;
 
-class AuthQuery extends Query
+class ProductQuery extends Query
 {
     protected $attributes = [
-        'name' => 'auth query'
+        'name' => 'product query'
     ];
 
     public function type(): Type
     {
-        return GraphQL::type('user');
+        return Type::listOf(GraphQL::type('product'));
     }
 
     public function args(): array
     {
         return [
-            'email' => ['name' => 'email', 'type' => Type::string()],
-            'password' => ['name' => 'password', 'type' => Type::string()]
+             'productId' => ['name' => 'productId', 'type' => Type::int()],
         ];
     }
 
-    public function __construct(UserService $userService)
+    public function __construct(ProductService $productService)
     {
-        $this->userService = $userService;
+        $this->productService = $productService;
     }
 
     /**
@@ -39,6 +38,6 @@ class AuthQuery extends Query
      */
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return $this->userService->auth($args);
+        return $this->productService->search($args);
     }
 }
