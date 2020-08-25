@@ -1,10 +1,10 @@
-import { logout } from '@/api/user';
-import { loginRequest } from '@/graphql';
-import { getToken, setToken, removeToken } from '@/utils/auth';
+// import { logout } from '@/api/user';
+import { loginRequest, logoutRequest } from '@/graphql/user';
+import { getCookie, setCookie, removeCookie } from '@/utils/auth';
 import { resetRouter } from '@/router';
 
 const state = {
-  token: getToken(),
+  token: getCookie(),
   name: '',
   userId: '',
   avatar: ''
@@ -22,15 +22,14 @@ const mutations = {
 };
 
 const actions = {
-  // user login
   login({ commit }, userInfo) {
     const { email, password } = userInfo;
     return new Promise((resolve, reject) => {
       loginRequest({ email: email.trim(), password: password }).then(response => {
-        const { token, ...user } = response.data.data.auth;
+        const { token, ...user } = response.data.auth;
         commit('setToken', token);
         commit('setUser', user);
-        setToken(token);
+        setCookie(token);
         resolve();
       }).catch(error => {
         reject(error);
@@ -38,12 +37,11 @@ const actions = {
     });
   },
 
-  // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '');
-        removeToken();
+      logoutRequest(state.token).then(() => {
+        commit('setToken', '');
+        removeCookie();
         resetRouter();
         resolve();
       }).catch(error => {
@@ -55,8 +53,8 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      commit('SET_TOKEN', '');
-      removeToken();
+      commit('setToken', '');
+      removeCookie();
       resolve();
     });
   }

@@ -1,8 +1,7 @@
-import axios from 'axios';
+import request from '@/graphql/request';
 
 export const loginRequest = parameter => {
-  console.log(parameter);
-  return axios.post('http://127.0.0.1:8000/graphql', {
+  const query = {
     query: `query auth($email: String!, $password: String!) {
       auth(email: $email, password: $password) {
         userId
@@ -14,5 +13,19 @@ export const loginRequest = parameter => {
       }
     }`,
     variables: parameter
+  };
+
+  return request({
+    method: 'post',
+    data: query
+  });
+};
+
+export const logoutRequest = parameter => {
+  const query = {};
+
+  return request({
+    method: 'post',
+    data: query
   });
 };

@@ -1,42 +1,21 @@
 <template>
   <div class="app-container">
     <el-table
-      v-loading="listLoading"
+      v-loading="loading"
       :data="list"
       element-loading-text="Loading"
       border
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="ID" width="95">
+      <el-table-column align="center" label="Product Id" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.row.productId }}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="Product Name">
         <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          {{ scope.row.slug }}
         </template>
       </el-table-column>
     </el-table>
@@ -44,34 +23,24 @@
 </template>
 
 <script>
-import { getProductList } from '@/api/product';
+import { productList } from '@/graphql/product';
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      };
-      return statusMap[status];
-    }
-  },
   data() {
     return {
       list: null,
-      listLoading: true
+      loading: true
     };
   },
   created() {
-    this.fetchData();
+    this.fetchProductList();
   },
   methods: {
-    fetchData() {
+    fetchProductList() {
       this.listLoading = true;
-      getProductList().then(response => {
-        this.list = response.data.items;
-        this.listLoading = false;
+      productList().then(response => {
+        this.list = response.data.products;
+        this.loading = false;
       });
     }
   }
