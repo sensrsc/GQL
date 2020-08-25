@@ -67,19 +67,26 @@ export const constantRoutes = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      },
+      {
+        path: ':productId',
+        name: 'Product Detail',
+        hidden: true,
+        component: () => import('@/views/product/detail'),
+        meta: { title: 'Product Detail', activeMenu: '/products/product-list' }
       }
     ]
   },
 
   {
-    path: '/dashboard',
+    path: '/vocabulary',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/vocabulary',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'vocabulary',
+      name: 'Vocabulary',
+      component: () => import('@/views/vocabulary/index'),
+      meta: { title: 'Vocabulary', icon: 'dashboard' }
     }]
   },
 

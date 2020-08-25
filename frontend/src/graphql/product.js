@@ -16,3 +16,21 @@ export const productList = () => {
     data: query
   });
 };
+
+export const productDetail = parameter => {
+  const query = {
+    query: `query products($productId: Int!) {
+      products(productId: $productId) {
+        productId
+        slug
+      }
+    }`,
+    variables: parameter
+  };
+
+  return request({
+    url: '/products',
+    method: 'post',
+    data: query
+  });
+};

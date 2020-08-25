@@ -15,7 +15,11 @@
       </el-table-column>
       <el-table-column label="Product Name">
         <template slot-scope="scope">
-          {{ scope.row.slug }}
+          <router-link
+            :to="{ name: 'Product Detail', params: { productId: scope.row.productId, productSlug: scope.row.slug }}"
+          >
+            {{ scope.row.slug }}
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
